@@ -1,0 +1,11 @@
+//= require jquery-1.8.3.min
+//= require jquery-ui-1.10.3.custom.min
+//= require flat/jquery.ui.touch-punch.min
+//= require flat/bootstrap.min
+//= require flat/bootstrap-select
+//= require flat/bootstrap-switch
+//= require flat/flatui-checkbox
+//= require flat/flatui-radio
+//= require flat/jquery.tagsinput.js
+//= require flat/jquery.placeholder.js
+//= require flat/jquery.stacktable

@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: 127.0.0.1
+
+development:
+  <<: *default
+  database: play_listener_development
+
+test:
+  <<: *default
+  database: play_listener_test
+
+production:
+  <<: *default
+  database: play_listener_production

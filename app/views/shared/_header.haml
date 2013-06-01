@@ -1,0 +1,7 @@
+%header
+  - unless user_signed_in?
+    = link_to "Log In", login_path
+  - else
+    - unless current_user.properties.empty?
+      = image_tag(current_user.avatar_url, :title => current_user.username, :alt => current_user.username)
+    = link_to "Log Out", logout_path, :data => { method: :delete }
