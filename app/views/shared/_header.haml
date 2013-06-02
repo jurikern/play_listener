@@ -2,11 +2,11 @@
   .navbar
     .navbar-inner
       .container
-        %button.btn.btn-navbar{:type => "button", :data => {:toggle => "collapse", :target => "#nav-collapse-01"}}
+        %button.btn.btn-navbar{:type => "button", :data => {:toggle => "collapse", :target => "#nav-collapse-01"}, :style => "position:relative;top:8px;"}
         %a.brand{ :href => root_url, :title => "Play Listener" }
-          %span.fui-play
+          = image_tag("icons/Key@2x.png", :width => "50", :height => "50")
         .nav-collapse.collapse#nav-collapse-01
-          %ul.nav.pull-right
+          %ul.nav.pull-right{:style => "position:relative;top:8px;"}
             - if user_signed_in?
               %li.hidden-desktop
                 %a{ :href => "javascript:void(0);" }
@@ -20,7 +20,7 @@
                   Play Listeners
               %li.hidden-desktop
                 %a{ :href => "javascript:void(0);" }
-                  %span.fui-gear
+                  %span.fui-checkbox-checked
                   Audio/Video Formats
 
               %li.dropdown.visible-desktop
@@ -36,11 +36,11 @@
                   %li.divider
                   %li
                     %a{ :href => "javascript:void(0);" }
-                      = image_tag("icons/Spaceship@2x.png", :height => "40", :width => "40")
+                      %span.fui-list
                       &nbsp;Play Listeners
                   %li
                     %a{ :href => "javascript:void(0);" }
-                      = image_tag("icons/Settings@2x.png", :height => "40", :width => "40")
+                      %span.fui-checkbox-checked
                       &nbsp;Audio/Video Formats
             %li.divider
             - if user_signed_in?
