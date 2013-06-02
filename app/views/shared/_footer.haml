@@ -1,0 +1,10 @@
+.bottom-menu.bottom-menu-large.mbl
+  .container
+    .row
+      .span2
+      .span3.brand.pull-right
+        %a.brand{:href => root_url, :title => "Play Listener"}
+          = image_tag("icons/Key@2x.png", :width => "50", :height => "50")
+          PlayListener.io
+        .row{:style => "margin-left:55px;"}
+          %font{:size => "2"} &copyAll right reserved. #{Date.current.strftime("%Y")}
