@@ -1,7 +1,57 @@
 %header
-  - unless user_signed_in?
-    = link_to "Log In", login_path
-  - else
-    - unless current_user.properties.empty?
-      = image_tag(current_user.avatar_url, :title => current_user.username, :alt => current_user.username)
-    = link_to "Log Out", logout_path, :data => { method: :delete }
+  .navbar
+    .navbar-inner
+      .container
+        %button.btn.btn-navbar{:type => "button", :data => {:toggle => "collapse", :target => "#nav-collapse-01"}}
+        %a.brand{ :href => root_url, :title => "Play Listener" }
+          %span.fui-play
+        .nav-collapse.collapse#nav-collapse-01
+          %ul.nav.pull-right
+            - if user_signed_in?
+              %li.hidden-desktop
+                %a{ :href => "javascript:void(0);" }
+                  - unless current_user.properties.empty?
+                    %span.fui-user
+                    = current_user.username
+              %li.divider.hidden-desktop
+              %li.hidden-desktop
+                %a{ :href => "javascript:void(0);" }
+                  %span.fui-list
+                  Play Listeners
+              %li.hidden-desktop
+                %a{ :href => "javascript:void(0);" }
+                  %span.fui-gear
+                  Audio/Video Formats
+
+              %li.dropdown.visible-desktop
+                %a.dropdown-toggle{:href => "javascript:void(0);", :data => {:toggle => "dropdown"}}
+                  %span.fui-gear
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{ :href => "javascript:void(0);" }
+                      - unless current_user.properties.empty?
+                        .thumbnail
+                          = image_tag(current_user.avatar_url, :title => current_user.username, :alt => current_user.username, :class => "img-rounded")
+                  %li.divider
+                  %li
+                    %a{ :href => "javascript:void(0);" }
+                      = image_tag("icons/Spaceship@2x.png", :height => "40", :width => "40")
+                      &nbsp;Play Listeners
+                  %li
+                    %a{ :href => "javascript:void(0);" }
+                      = image_tag("icons/Settings@2x.png", :height => "40", :width => "40")
+                      &nbsp;Audio/Video Formats
+            %li.divider
+            - if user_signed_in?
+              -# unless current_user.properties.empty?
+                = image_tag(current_user.avatar_url, :title => current_user.username, :alt => current_user.username)
+              %li
+                = link_to logout_path do
+                  %spam.fui-exit
+                  Log Out
+            - else
+              %li
+                = link_to login_path do
+                  %span.fui-user
+                  YouTube Log In
