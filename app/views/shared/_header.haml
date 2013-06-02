@@ -13,6 +13,9 @@
                   - unless current_user.properties.empty?
                     %span.fui-user
                     = current_user.username
+                  - else
+                    %span.fui-alert
+                    No linked YouTube account
               %li.divider.hidden-desktop
               %li.hidden-desktop
                 %a{ :href => "javascript:void(0);" }
@@ -33,9 +36,12 @@
                       - unless current_user.properties.empty?
                         .thumbnail
                           = image_tag(current_user.avatar_url, :title => current_user.username, :alt => current_user.username, :class => "img-rounded")
+                      - else
+                        %span.fui-alert
+                        No linked YouTube account
                   %li.divider
                   %li
-                    %a{ :href => "javascript:void(0);" }
+                    %a{ :href => playlisteners_path }
                       %span.fui-list
                       &nbsp;Play Listeners
                   %li
@@ -44,10 +50,8 @@
                       &nbsp;Audio/Video Formats
             %li.divider
             - if user_signed_in?
-              -# unless current_user.properties.empty?
-                = image_tag(current_user.avatar_url, :title => current_user.username, :alt => current_user.username)
               %li
-                = link_to logout_path do
+                = link_to logout_path, :data => { :method => :delete } do
                   %spam.fui-exit
                   Log Out
             - else

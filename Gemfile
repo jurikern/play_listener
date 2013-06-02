@@ -17,6 +17,7 @@ group :development do
   gem "capistrano"
 end
 
+gem "jquery-rails"
 gem "haml-rails"
 
 gem "pg"

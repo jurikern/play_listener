@@ -1,4 +1,5 @@
-//= require jquery-1.8.3.min
+//= require jquery
+//= require jquery_ujs
 //= require jquery-ui-1.10.3.custom.min
 //= require flat/jquery.ui.touch-punch.min
 //= require flat/bootstrap.min
