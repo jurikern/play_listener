@@ -16,19 +16,10 @@
                   - else
                     %span.fui-alert
                     No linked YouTube account
-              %li.divider.hidden-desktop
-              %li.hidden-desktop
-                %a{ :href => "javascript:void(0);" }
-                  %span.fui-list
-                  Play Listeners
-              %li.hidden-desktop
-                %a{ :href => "javascript:void(0);" }
-                  %span.fui-checkbox-checked
-                  Audio/Video Formats
 
               %li.dropdown.visible-desktop
                 %a.dropdown-toggle{:href => "javascript:void(0);", :data => {:toggle => "dropdown"}}
-                  %span.fui-gear
+                  %span.fui-user
                   %b.caret
                 %ul.dropdown-menu
                   %li
@@ -39,15 +30,7 @@
                       - else
                         %span.fui-alert
                         No linked YouTube account
-                  %li.divider
-                  %li
-                    %a{ :href => playlisteners_path }
-                      %span.fui-list
-                      &nbsp;Play Listeners
-                  %li
-                    %a{ :href => "javascript:void(0);" }
-                      %span.fui-checkbox-checked
-                      &nbsp;Audio/Video Formats
+
             %li.divider
             - if user_signed_in?
               %li
