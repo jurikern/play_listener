@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :playlists
+
   devise :database_authenticatable, :encryptable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   serialize :properties, ActiveRecord::Coders::Hstore
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   @youtube = nil
 
-  scope :by_uid, ->(uid) { where(:uid => uid) }
+  scope :by_uid, ->(uid) {where(:uid => uid)}
 
   def self.find_for_google_oauth2(auth, signed_in_resource=nil)
     user = User.by_uid(auth.uid).first
@@ -61,6 +63,29 @@ class User < ActiveRecord::Base
       save!
     else
       false
+    end
+  end
+
+  def check_access_token!
+    if youtube.session_token_info[:code] == 200
+      true
+    else
+      refresh_access_token!
+    end
+  end
+
+  def synch_playlists
+    if check_access_token!
+      remote_playlists = youtube.playlists
+      remote_playlists.each do |remote_playlist|
+        playlist              = playlists.by_uid(remote_playlist.playlist_id).first || playlists.build
+        playlist.uid          = remote_playlist.playlist_id if playlist.new_record?
+        playlist.title        = remote_playlist.title
+        playlist.summary      = remote_playlist.summary
+        playlist.description  = remote_playlist.description
+        playlist.published_at = remote_playlist.published
+        playlist.save!
+      end
     end
   end
 end

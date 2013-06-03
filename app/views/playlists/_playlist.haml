@@ -1,0 +1,9 @@
+%tr
+  %td
+    %span.fui-check-inverted
+  %td #{playlist.title}
+  %td #{time_ago_in_words(playlist.published_at)} ago
+  %td
+    = link_to synch_playlist_tracks_path(playlist), :class => "btn btn-inverse btn-small mll", :data => { :method => "post" } do
+      = image_tag("icons/Magic@2x.png", :width => "20", :height => "20")
+      %b &nbsp;Synch Tracks

@@ -1,0 +1,18 @@
+.dialog.dialog-success
+  - if current_user.playlists.count == 0
+    You still do not have active playlists. Maybe it's time to synchronize ;)
+  - else
+    You have synchronized #{pluralize(current_user.playlists.count, "playlist")}. Something has changed? Then try again :)
+
+  = link_to synch_playlists_path, :class => "btn btn-inverse btn-wide mll", :data => { :method => "post" } do
+    = image_tag("icons/Magic@2x.png", :width => "30", :height => "30")
+    %b &nbsp;Synch Playlists
+%table.table.table-stripped
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Published
+      %th
+  %tbody
+    = render current_user.playlists

@@ -5,8 +5,12 @@ PlayListener::Application.routes.draw do
     delete "logout", to: "users/sessions#destroy", as: :logout
   end
 
-  resources :playlisteners, :only => [:index] do
-    post :synchronize, :on => :collection
+  resources :playlists, :only => [:index, :show] do
+    post :synch, :on => :collection
+
+    resources :tracks, :only => [:index] do
+      post :synch, :on => :collection
+    end
   end
 
   root :to => "application#index"
