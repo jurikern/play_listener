@@ -7,7 +7,7 @@ class CreateTracks < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index(:playlists, :uid, :unique => true)
+    add_index(:tracks, :uid, :unique => true)
     add_foreign_key(:tracks, :playlists, :dependent => :delete)
   end
 end

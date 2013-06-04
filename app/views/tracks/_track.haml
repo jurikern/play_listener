@@ -1,0 +1,25 @@
+%tr
+  %td{:style => "vertical-align:middle;"}
+    %span.fui-check
+  %td
+    %a{ :href => track.player_url }
+      #{image_tag(track.thumbnail_url)}
+  %td{:style => "vertical-align:middle;"}
+    .row
+      #{track.title}
+    .row
+      %br/
+    .row
+      %span.fui-export
+      &nbsp;
+      %a
+        %span.label.label-inverse
+          mp4
+      %a
+        %span.label.label-inverse
+          m4a
+      %a
+        %span.label.label-inverse
+          mp3
+  %td{:style => "vertical-align:middle;"} #{Time.at(track.duration.to_i).gmtime.strftime('%R:%S')}
+  %td{:style => "vertical-align:middle;"} #{time_ago_in_words(track.published_at)} ago

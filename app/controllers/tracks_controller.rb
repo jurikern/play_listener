@@ -2,6 +2,10 @@ class TracksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :init_playlist
 
+  def index
+    @tracks = @playlist.tracks
+  end
+
   def synch
     @playlist.synch_tracks
     redirect_to :back

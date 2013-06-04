@@ -1,5 +1,6 @@
 class Playlist < ActiveRecord::Base
   belongs_to :user
+  has_many   :tracks
 
   serialize :properties, ActiveRecord::Coders::Hstore
 
@@ -22,7 +23,15 @@ class Playlist < ActiveRecord::Base
   def synch_tracks
     if user.check_access_token!
       remote.videos.each do |video|
-        raise video.to_yaml
+        track               = tracks.by_uid(video.unique_id).first || tracks.build
+        track.uid           = video.unique_id if track.new_record?
+        track.title         = video.title
+        track.description   = video.description
+        track.player_url    = video.player_url
+        track.thumbnail_url = video.thumbnails.first.url
+        track.published_at  = video.published_at
+        track.duration      = video.duration
+        track.save!
       end
     end
   end

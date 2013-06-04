@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130603171249) do
+ActiveRecord::Schema.define(:version => 20130604005752) do
 
   create_table "playlists", :force => true do |t|
     t.integer  "user_id",                    :null => false
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20130603171249) do
 
   add_index "playlists", ["properties"], :name => "playlists_properties"
   add_index "playlists", ["uid"], :name => "index_playlists_on_uid", :unique => true
+
+  create_table "tracks", :force => true do |t|
+    t.integer  "playlist_id",                 :null => false
+    t.string   "uid",         :default => "", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.hstore   "properties"
+  end
+
+  add_index "tracks", ["properties"], :name => "tracks_properties"
+  add_index "tracks", ["uid"], :name => "index_tracks_on_uid", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",              :default => "", :null => false
@@ -42,5 +53,7 @@ ActiveRecord::Schema.define(:version => 20130603171249) do
   add_index "users", ["uid"], :name => "index_users_on_uid", :unique => true
 
   add_foreign_key "playlists", "users", :name => "playlists_user_id_fk", :dependent => :delete
+
+  add_foreign_key "tracks", "playlists", :name => "tracks_playlist_id_fk", :dependent => :delete
 
 end

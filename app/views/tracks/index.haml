@@ -1,0 +1,20 @@
+.dialog.dialog-success
+  - if @tracks.count == 0
+    This playlist is empty. May be worth a try synchronize ;)
+  - else
+    You have synchronized #{pluralize(@tracks.count, "track")}. Is not it? Then try again :)
+
+  = link_to synch_playlist_tracks_path(@playlist), :class => "btn btn-inverse btn-wide mll", :data => { :method => "post" } do
+    = image_tag("icons/Magic@2x.png", :width => "30", :height => "30")
+    %b &nbsp;Synch Tracks
+= render "breadcrumb"
+%table.table.table-stripped
+  %thead
+    %tr
+      %th
+      %th Original
+      %th Title
+      %th Duration
+      %th Published
+  %tbody
+    = render @tracks

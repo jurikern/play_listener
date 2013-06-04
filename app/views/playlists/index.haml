@@ -7,12 +7,14 @@
   = link_to synch_playlists_path, :class => "btn btn-inverse btn-wide mll", :data => { :method => "post" } do
     = image_tag("icons/Magic@2x.png", :width => "30", :height => "30")
     %b &nbsp;Synch Playlists
+= render "breadcrumb"
 %table.table.table-stripped
   %thead
     %tr
       %th
       %th Title
       %th Published
+      %th
       %th
   %tbody
     = render current_user.playlists

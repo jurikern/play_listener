@@ -1,0 +1,5 @@
+%ul.breadcrumb
+  %li
+    = link_to "Playlists", playlists_path
+  %li.active
+    = link_to @playlist.title, playlist_tracks_path(@playlist)

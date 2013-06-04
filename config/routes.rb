@@ -13,5 +13,5 @@ PlayListener::Application.routes.draw do
     end
   end
 
-  root :to => "application#index"
+  root :to => "home#index"
 end

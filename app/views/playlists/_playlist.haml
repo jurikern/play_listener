@@ -1,8 +1,12 @@
 %tr
   %td
-    %span.fui-check-inverted
-  %td #{playlist.title}
+    %span.fui-check
+  %td= link_to playlist.title, playlist_tracks_path(playlist)
   %td #{time_ago_in_words(playlist.published_at)} ago
+  %td
+    = link_to playlist_tracks_path(playlist) do
+      %span.fui-volume
+      #{pluralize(playlist.tracks.count, "track")}
   %td
     = link_to synch_playlist_tracks_path(playlist), :class => "btn btn-inverse btn-small mll", :data => { :method => "post" } do
       = image_tag("icons/Magic@2x.png", :width => "20", :height => "20")
